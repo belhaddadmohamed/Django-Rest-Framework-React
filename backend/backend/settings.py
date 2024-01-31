@@ -131,6 +131,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
+    # Like i will work with (TokenObtainPairSerializer) instead of the default serializer
+    # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.MyTokenObtainPairSerializer",
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
     'VERIFYING_KEY': None,
