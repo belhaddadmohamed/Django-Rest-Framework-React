@@ -32,6 +32,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'email', 'password', 'password2']     
 
+
     # Validating password
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -40,6 +41,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             )
             
         return attrs
+
 
     # Create new user in the database
     def create(self, valid_data):
