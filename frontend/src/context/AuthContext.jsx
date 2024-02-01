@@ -94,9 +94,18 @@ export const AuthProvider = ({children}) => {
 
 
     useEffect(()=>{
-        response = await fetch('http://127.0.0.1:8000/token/refresh/')
-    },[loading])
+        // In case we refresh the token we need to update the user
+        if(authToken){
+            setUser(jwt_decode(authToken.access))
+        }
+        setLoading(false)
+    },[authToken, loading])
 
 
-    
+    return (
+        <AuthContext.Provider value={context_data}>
+            {loading ? null : children}
+        </AuthContext.Provider>
+    )
+
 }
