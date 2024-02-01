@@ -26,7 +26,7 @@ class register(generics.CreateAPIView):
 @permission_classes([IsAuthenticated])
 def dashboard(request):
     if request.method == 'GET':
-        context = f"Hey {request.user}, you are seeing a GET response"
+        context = f"Hey {request.user}, you are seeing a {request.GET.get('text')} response"
         return Response({'response':context}, status=status.HTTP_200_OK)
     
     elif request.method == 'POST':
@@ -42,9 +42,10 @@ def dashboard(request):
 @permission_classes([IsAuthenticated])
 def getRoutes(request):
     routes = [
-        {'GET': '/api/profiles/'},
-        {'POST': '/api/token/'},
-        {'POST': '/api/token/refresh'},
+        {'GET': 'api/'},
+        {'GET': 'api/dashboard/'},
+        {'POST': 'api/token/'},
+        {'POST': 'api/token/refresh'},
     ]
 
     return Response(routes)
