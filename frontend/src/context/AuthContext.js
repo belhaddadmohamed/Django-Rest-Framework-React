@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(() => {
         localStorage.getItem('authToken')
-            ? jwt_decode(localStorage.getItem('authToken'))
+            ? jwt_decode(localStorage.getItem('authToken').access)
             : null
     })
 
@@ -104,7 +104,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider value={context_data}>
-            {/* If the user is in the process of loading don't show anything */}
+            {/* If the user is in the process of loading don't show anything : to prevent the click on the buttons again*/}
             {loading ? null : children}
         </AuthContext.Provider>
     )
