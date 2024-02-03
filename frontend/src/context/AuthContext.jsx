@@ -104,6 +104,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider value={context_data}>
+            {/* If the user is in the process of loading don't show anything */}
             {loading ? null : children}
         </AuthContext.Provider>
     )
