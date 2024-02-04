@@ -1,6 +1,6 @@
-import React, { createContext, useEffect } from 'react' 
+import {React, createContext, useEffect, useState } from 'react' 
 import { useHistory } from 'react-router-dom'
-import jwt_decode from jwt_decode
+import { jwtDecode } from 'jwt-decode'
 
 const AuthContext = createContext()
 export default AuthContext;
@@ -9,17 +9,17 @@ export const AuthProvider = ({children}) => {
 
     ////////////// VARIABLES //////////////
 
-    const [authToken, setAuthToken] = useState(() => {
+    const [authToken, setAuthToken] = useState(() => 
         localStorage.getItem('authToken') 
             ? JSON.parse(localStorage.getItem('authToken'))
             : null
-    })
+    )
 
-    const [user, setUser] = useState(() => {
+    const [user, setUser] = useState(() => 
         localStorage.getItem('authToken')
-            ? jwt_decode(localStorage.getItem('authToken').access)
+            ? jwtDecode(localStorage.getItem('authToken').access)
             : null
-    })
+    )
 
     const [loading, setLoading] = useState(true)
 
@@ -45,7 +45,7 @@ export const AuthProvider = ({children}) => {
         if(response.status === 200){
             console.log('loggedIn')
             setAuthToken(data)
-            setUser(jwt_decode(data.access))
+            setUser(jwtDecode(data.access))
             localStorage.setItem('authToken', JSON.stringify(data))
             history.push('/')   // Redirect the user to home
         } else {
@@ -82,7 +82,7 @@ export const AuthProvider = ({children}) => {
     }
 
 
-    context_data = {
+    const context_data = {
         user,
         setUser,
         authToken,
@@ -96,7 +96,7 @@ export const AuthProvider = ({children}) => {
     useEffect(()=>{
         // In case we refresh the token we need to update the user
         if(authToken){
-            setUser(jwt_decode(authToken.access))
+            setUser(jwtDecode(authToken.access))
         }
         setLoading(false)
     },[authToken, loading])

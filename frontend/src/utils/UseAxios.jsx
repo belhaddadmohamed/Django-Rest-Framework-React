@@ -1,5 +1,5 @@
  import axios from 'axios'
- import jwt_decode from 'jwt-decode'
+ import jwtDecode from 'jwt-decode'
  import dayjs from 'dayjs'
  import { useContext } from 'react'
  import AuthContext from '../context/AuthContext'
@@ -18,7 +18,7 @@
 
     // Interceptor
     axiosInstance.interceptors.request.use(async req => {
-        const user = jwt_decode(authToken.access)
+        const user = jwtDecode(authToken.access)
 
         // 'exp' is a value inside the token determines wether the token expired or not
         const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1
