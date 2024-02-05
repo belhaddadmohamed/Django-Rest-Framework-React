@@ -8,10 +8,10 @@ function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const username = e.target.email.value 
+    const username = e.target.username.value 
     const email = e.target.email.value 
-    const password = e.target.email.value 
-    const password2 = e.target.email.value 
+    const password = e.target.password.value 
+    const password2 = e.target.password2.value 
 
     registerUser(username, email, password, password2)
   }

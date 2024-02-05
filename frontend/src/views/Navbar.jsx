@@ -24,9 +24,14 @@ function Navbar() {
 
             {/* Check if the user is loggedIn */}
             { user ? 
-            (<li className="nav-item">
-              <button className="nav-link" onClick={logoutUser}>Logout</button>
-            </li>) :
+            ( <ul className="d-flex list-unstyled">
+                <li className="nav-item">
+                  <Link className="nav-link" to='/dashboard'>Dashboard</Link>
+                </li>
+                <li className="nav-item">
+                  <button className="nav-link" onClick={logoutUser}>Logout</button>
+                </li>
+              </ul>) :
             ( <ul className="d-flex list-unstyled"> 
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">Register</Link>

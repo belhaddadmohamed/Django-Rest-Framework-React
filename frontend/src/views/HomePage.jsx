@@ -32,8 +32,6 @@ function HomePage() {
           </div>
         </div>
 
-        <hr/>
-
       </div> 
 
     </main>

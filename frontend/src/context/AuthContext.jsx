@@ -48,7 +48,7 @@ export const AuthProvider = ({children}) => {
             setAuthToken(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem('authToken', JSON.stringify(data))
-            history.push('/')   // Redirect the user to home
+            history.push('/dashboard')   // Redirect the user to home
         } else {
             alert("Something went wrong ! "+response.status)
         }
@@ -72,7 +72,7 @@ export const AuthProvider = ({children}) => {
             console.log("New user has been created!")
             history.push('/login')
         }else{
-            console.log('Soemthing went wrong')
+            console.log('Something went wrong')
         }
     }
 
