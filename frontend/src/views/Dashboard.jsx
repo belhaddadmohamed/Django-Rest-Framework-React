@@ -35,7 +35,7 @@ function Dashboard() {
   useEffect(()=>{
     const fetchPostData = async () => {
       try {
-        const response = await api.post('/test/')
+        const response = await api.post('/test/', [{text: 'ich libe idich'},])
         setRes(response.data.msg)
       } catch (error) {
         setRes("Something went wrong")

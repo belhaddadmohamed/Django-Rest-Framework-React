@@ -28,11 +28,13 @@
         const response = await axios.post(`${baseURL}/token/refresh/`, {
             refresh: authToken.refresh
         });
-        console.log('Here is your new token')
+
+        // Reset the variables
         localStorage.setItem('authToken', JSON.stringify(response.data))
         setAuthToken(response.data);
         setUser(jwtDecode(response.data.access))
-
+        console.log('Token Has been Refreshed')
+        
         req.headers.Authorization = `Bearer ${response.data.access}`
         
         return req
