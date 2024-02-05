@@ -1,9 +1,38 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
+import UseAxios from '../utils/UseAxios'
 import { Link } from 'react-router-dom' 
+import { jwtDecode } from 'jwt-decode'
 
 function Dashboard() {
   const {user} = useContext(AuthContext)
+  const [res, setRes] = useState('')
+  const api = UseAxios()
+  const token = localStorage.getItem('authToken')
+
+  if (token){
+    const decode = jwtDecode(token)
+    var user_id = decode.user_id
+    var username = decode.username
+    var name = decode.name
+    var image = decode.image
+  }
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/test/')
+        setRes(response.data.msg)
+
+      } catch (error) {
+        setRes("Something went wrong!!")
+        console.log("Something went wrong!!")
+      }
+    }
+  }, [])
+
+
+  
 
   return (
     <>
@@ -85,6 +114,8 @@ function Dashboard() {
               </ul>
             </div>
           </nav>
+
+          <div className="alert alert-sucess">{res}</div>
 
 
           {/* Main Dashboard */}
