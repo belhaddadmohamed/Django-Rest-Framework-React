@@ -6,7 +6,9 @@ function PrivateRoute({children, ...rest}) {
     let {user} = useContext(AuthContext)
 
   return (
-    <Route {...rest}> {!user ? <Redirect to='login/' /> : children} </Route>
+    <Route {...rest}>
+      {!user ? <Redirect to="/login" /> : children }
+    </Route>
   )
 }
 

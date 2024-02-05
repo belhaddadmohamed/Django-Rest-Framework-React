@@ -5,6 +5,7 @@ import PrivateRoute from './utils/PrivateRoute'
 
 import Navbar from './views/Navbar'
 import HomePage from './views/HomePage'
+import Dashboard from './views/Dashboard'
 import LoginPage from './views/LoginPage'
 import RegisterPage from './views/RegisterPage'
 import Footer from './views/Footer'
@@ -16,8 +17,10 @@ function App() {
         <Navbar/>
 
         <Switch>
-          <PrivateRoute component={HomePage} path="/dashboard" exact />
+          <PrivateRoute component={Dashboard} path="/dashboard" exact />
           <Route component={LoginPage} path="/login" />
+          <Route component={RegisterPage} path="/register" />
+          <Route component={HomePage} path="/" />
         </Switch>
 
         <Footer/>

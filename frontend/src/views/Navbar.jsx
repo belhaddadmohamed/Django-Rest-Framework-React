@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 function Navbar() {
+  const {logoutUser, user} = useContext(AuthContext)
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <img style={{"width": "100px", "height": "40px", "objectFit": "contain"}} src="https://i.imgur.com/juL1aAc.png" alt=""/>
-
+          <img style={{"width": "100px", "height": "40px", "objectFit": "contain"}} src="https://picsum.photos/600/300" alt=""/>
+          
         </a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -14,17 +19,23 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              <Link className="nav-link active" aria-current="page" to="/homepage">Home</Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Features</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
-            </li>
+
+            {/* Check if the user is loggedIn */}
+            { user ? 
+            (<li className="nav-item">
+              <button className="nav-link" onClick={logoutUser}>Logout</button>
+            </li>) :
+            ( <ul className="d-flex list-unstyled"> 
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Register</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">Login</Link>
+                </li> 
+              </ul> )}
+            
           </ul>
         </div>
       </div>

@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 function RegisterPage() {
+  const {registerUser} = useContext(AuthContext)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const username = e.target.email.value 
+    const email = e.target.email.value 
+    const password = e.target.email.value 
+    const password2 = e.target.email.value 
+
+    registerUser(username, email, password, password2)
+  }
+
   return (
     
     <section className="vh-100" style={{"backgroundColor": "#9A616D"}}>
@@ -10,15 +24,18 @@ function RegisterPage() {
             <div className="col col-xl-10">
               <div className="card" style={{"borderRadius": "1rem"}}>
                 <div className="row g-0">
+
+                  {/* Background image */}
                   <div className="col-md-6 col-lg-5 d-none d-md-block">
                     <img  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
                       alt="login form" className="img-fluid" style={{"borderRadius": "1rem 0 0 1rem"}} />
                   </div>
+
+                  {/* Register from section */}
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
       
-                      <form>
-      
+                      <form method='post' onSubmit={handleSubmit}>
                         <div className="d-flex align-items-center mb-3 pb-1">
                           <i className="fas fa-cubes fa-2x me-3" style={{"color": "#ff6219"}}></i>
                           <span className="h2 fw-bold mb-0">Welcome to <b>Desphixs👋</b></span>
@@ -27,40 +44,41 @@ function RegisterPage() {
                         <h5 className="fw-normal mb-3 pb-3" style={{"letterSpacing": "1px"}}>Sign Up</h5>
       
                         <div className="form-outline mb-4">
-                          <input  type="email" id="form2Example16" className="form-control form-control-lg" placeholder="Email Address"/>
+                          <input  type="email" id="form2Example16" name='email' className="form-control form-control-lg" placeholder="Email Address"/>
                         </div>
 
                         <div className="form-outline mb-4">
-                            <input type="text" id="form2Example18" className="form-control form-control-lg" placeholder="Username" />
+                            <input type="text" id="form2Example18" name='username' className="form-control form-control-lg" placeholder="Username" />
                           </div>
 
                           <div className="form-outline mb-4">
-                            <input type="password" id="form2Example19" className="form-control form-control-lg" placeholder="Password" />
+                            <input type="password" id="form2Example19" name='password' className="form-control form-control-lg" placeholder="Password" />
                           </div>
       
                         <div className="form-outline mb-4">
-                          <input type="password" id="form2Example20" className="form-control form-control-lg" placeholder="Confirm Password" />
+                          <input type="password" id="form2Example20" name='password2' className="form-control form-control-lg" placeholder="Confirm Password" />
                         </div>
       
                         <div className="pt-1 mb-4">
-                          <button className="btn btn-dark btn-lg btn-block" type="button">Register</button>
+                          <button className="btn btn-dark btn-lg btn-block" type="submit">Register</button>
                         </div>
       
                         <a className="small text-muted" href="#!">Forgot password?</a>
-                        <p className="mb-5 pb-lg-2" style={{"color": "#393f81"}}>Don't have an account? <Link to="login/"
-                            style={{"color": "#393f81"}}>Register here</Link></p>
+                        <p className="mb-5 pb-lg-2" style={{"color": "#393f81"}}>Already have an account? <Link to='/login'
+                            style={{"color": "#393f81"}}>Login</Link></p>
                         <a href="#!" className="small text-muted">Terms of use.</a>
                         <a href="#!" className="small text-muted">Privacy policy</a>
                       </form>
       
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+    </section>
   )
 }
 

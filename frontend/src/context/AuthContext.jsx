@@ -17,9 +17,10 @@ export const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(() => 
         localStorage.getItem('authToken')
-            ? jwtDecode(localStorage.getItem('authToken').access)
+            ? jwtDecode(localStorage.getItem('authToken'))
             : null
     )
+    console.log(user)
 
     const [loading, setLoading] = useState(true)
 
@@ -34,7 +35,7 @@ export const AuthProvider = ({children}) => {
             headers: {
                 'content-type': 'application/json',
             },
-            data: JSON.stringify({
+            body: JSON.stringify({
                 email, password
             })
         })
@@ -43,7 +44,7 @@ export const AuthProvider = ({children}) => {
         console.log(data)
 
         if(response.status === 200){
-            console.log('loggedIn')
+            console.log('loggedIn', jwtDecode(data.access))
             setAuthToken(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem('authToken', JSON.stringify(data))
@@ -60,7 +61,7 @@ export const AuthProvider = ({children}) => {
             headers: {
                 'content-type': 'application/json',
             },
-            data: JSON.stringify({
+            body: JSON.stringify({
                 username, email, password, password2
             })
         })
@@ -70,6 +71,8 @@ export const AuthProvider = ({children}) => {
         if(data.status === 201){
             console.log("New user has been created!")
             history.push('/login')
+        }else{
+            console.log('Soemthing went wrong')
         }
     }
 
@@ -94,9 +97,10 @@ export const AuthProvider = ({children}) => {
 
 
     useEffect(()=>{
-        // In case we refresh the token we need to update the user
+        // In case we refresh the Token(authToken) we need to update the user
         if(authToken){
             setUser(jwtDecode(authToken.access))
+            console.log('User set to:', jwtDecode(authToken.access))
         }
         setLoading(false)
     },[authToken, loading])
