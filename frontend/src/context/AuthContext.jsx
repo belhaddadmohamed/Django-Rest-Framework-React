@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
     ////////////// VARIABLES //////////////
 
     const [authToken, setAuthToken] = useState(() => 
-        localStorage.getItem('authToken') 
+        localStorage.getItem('authToken')
             ? JSON.parse(localStorage.getItem('authToken'))
             : null
     )
@@ -20,7 +20,6 @@ export const AuthProvider = ({children}) => {
             ? jwtDecode(localStorage.getItem('authToken'))
             : null
     )
-    console.log(user)
 
     const [loading, setLoading] = useState(true)
 
@@ -100,7 +99,7 @@ export const AuthProvider = ({children}) => {
         // In case we refresh the Token(authToken) we need to update the user
         if(authToken){
             setUser(jwtDecode(authToken.access))
-            console.log('User set to:', jwtDecode(authToken.access))
+            // console.log('User set to:', jwtDecode(authToken.access))
         }
         setLoading(false)
     },[authToken, loading])

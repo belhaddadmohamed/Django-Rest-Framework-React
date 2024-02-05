@@ -18,21 +18,34 @@ function Dashboard() {
     var image = decode.image
   }
 
-  useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const response = await api.get('/test/')
-        setRes(response.data.msg)
+  // useEffect(()=>{
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await api.get('/test/')
+  //       setRes(response.data.msg)
+  //     } catch (error) {
+  //       setRes("Something went wrong!!")
+  //       console.log("Sorry", error)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [])
 
+
+  useEffect(()=>{
+    const fetchPostData = async () => {
+      try {
+        const response = await api.post('/test/')
+        setRes(response.data.msg)
       } catch (error) {
-        setRes("Something went wrong!!")
-        console.log("Something went wrong!!")
+        setRes("Something went wrong")
+        console.log(error)
       }
     }
+    fetchPostData()
   }, [])
 
 
-  
 
   return (
     <>
@@ -115,11 +128,11 @@ function Dashboard() {
             </div>
           </nav>
 
-          <div className="alert alert-sucess">{res}</div>
 
 
           {/* Main Dashboard */}
           <main role="main" className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div className="alert alert-success">{res}</div>
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
               <h1 className="h2">My Dashboard</h1>
               <span>Hello {user.name}!</span>
