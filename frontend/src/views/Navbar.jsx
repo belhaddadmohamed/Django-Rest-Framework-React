@@ -22,7 +22,7 @@ function Navbar() {
               <Link className="nav-link active" aria-current="page" to="/homepage">Home</Link>
             </li>
 
-            {/* Check if the user is loggedIn */}
+            {/* Check if the us er is loggedIn */}
             { user ? 
             ( <ul className="d-flex list-unstyled">
                 <li className="nav-item">
