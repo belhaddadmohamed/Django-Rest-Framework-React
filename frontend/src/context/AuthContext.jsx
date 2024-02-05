@@ -50,7 +50,7 @@ export const AuthProvider = ({children}) => {
             localStorage.setItem('authToken', JSON.stringify(data))
             history.push('/dashboard')   // Redirect the user to home
         } else {
-            alert("Something went wrong ! "+response.status)
+            alert("Something went wrong ! " + response.status)
         }
     }
 
@@ -68,11 +68,11 @@ export const AuthProvider = ({children}) => {
 
         const data = await response.json()
 
-        if(data.status === 201){
+        if(response.status === 201){
             console.log("New user has been created!")
             history.push('/login')
         }else{
-            console.log('Something went wrong')
+            alert("Something went wrong! " + response.status)
         }
     }
 

@@ -1,20 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 
 function RegisterPage() {
   const {registerUser} = useContext(AuthContext)
 
+  // Resigter (2nd Method) 
+  const [email, setEmail] =  useState("")
+  const [username, setUsername] =  useState("")
+  const [password, setPassword] =  useState("")
+  const [password2, setPassword2] =  useState("")
+
+  console.log(username)
+
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    const username = e.target.username.value 
-    const email = e.target.email.value 
-    const password = e.target.password.value 
-    const password2 = e.target.password2.value 
-
     registerUser(username, email, password, password2)
   }
+
+  // Register (First Method)
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   const username = e.target.username.value 
+  //   const email = e.target.email.value 
+  //   const password = e.target.password.value 
+  //   const password2 = e.target.password2.value 
+  //   registerUser(username, email, password, password2)
+  // }
 
   return (
     
@@ -44,19 +56,23 @@ function RegisterPage() {
                         <h5 className="fw-normal mb-3 pb-3" style={{"letterSpacing": "1px"}}>Sign Up</h5>
       
                         <div className="form-outline mb-4">
-                          <input  type="email" id="form2Example16" name='email' className="form-control form-control-lg" placeholder="Email Address"/>
+                          <input  type="email" id="form2Example16" name='email' className="form-control form-control-lg" placeholder="Email Address"
+                          onChange={e => setEmail(e.target.value)}/>
                         </div>
 
                         <div className="form-outline mb-4">
-                            <input type="text" id="form2Example18" name='username' className="form-control form-control-lg" placeholder="Username" />
+                            <input type="text" id="form2Example18" name='username' className="form-control form-control-lg" placeholder="Username" 
+                            onChange={e => setUsername(e.target.value)}/>
                           </div>
 
                           <div className="form-outline mb-4">
-                            <input type="password" id="form2Example19" name='password' className="form-control form-control-lg" placeholder="Password" />
+                            <input type="password" id="form2Example19" name='password' className="form-control form-control-lg" placeholder="Password" 
+                            onChange={e => setPassword(e.target.value)}/>
                           </div>
       
                         <div className="form-outline mb-4">
-                          <input type="password" id="form2Example20" name='password2' className="form-control form-control-lg" placeholder="Confirm Password" />
+                          <input type="password" id="form2Example20" name='password2' className="form-control form-control-lg" placeholder="Confirm Password" 
+                          onChange={e => setPassword2(e.target.value)}/>
                         </div>
       
                         <div className="pt-1 mb-4">
