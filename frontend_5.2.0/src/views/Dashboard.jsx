@@ -11,7 +11,9 @@ function Dashboard() {
   const token = localStorage.getItem('authToken')
 
   if (token){
-    const decode = jwtDecode(token)
+    const decode = jwtDecode(token)   // Question: why we met token and not access_token ?
+    console.log('token is:', token)
+    console.log('decoded token is:', decode)
     var user_id = decode.user_id
     var username = decode.username
     var name = decode.name
@@ -37,7 +39,7 @@ function Dashboard() {
   useEffect(()=>{
     const fetchPostData = async () => {
       try {
-        const response = await api.post('/test/', [{text: 'ich libe idich'}])
+        const response = await api.post('/test/')
         setRes(response.data.msg)
       } catch (error) {
         setRes("Something went wrong")

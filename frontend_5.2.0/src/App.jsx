@@ -14,16 +14,16 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <Navbar/>
 
+        <Navbar/>
         <Switch>
           <PrivateRoute component={Dashboard} path="/dashboard" exact />
           <Route component={LoginPage} path="/login" />
           <Route component={RegisterPage} path="/register" />
           <Route component={HomePage} path="/" />
         </Switch>
-
         <Footer/>
+
       </AuthProvider>
     </Router>
   )
