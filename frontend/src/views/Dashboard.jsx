@@ -18,6 +18,7 @@ function Dashboard() {
     var image = decode.image
   }
 
+  // GET Request
   // useEffect(()=>{
   //   const fetchData = async () => {
   //     try {
@@ -32,10 +33,11 @@ function Dashboard() {
   // }, [])
 
 
+  // POST Request
   useEffect(()=>{
     const fetchPostData = async () => {
       try {
-        const response = await api.post('/test/', [{text: 'ich libe idich'},])
+        const response = await api.post('/test/', [{text: 'ich libe idich'}])
         setRes(response.data.msg)
       } catch (error) {
         setRes("Something went wrong")

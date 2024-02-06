@@ -11,9 +11,6 @@ function LoginPage() {
     const password = e.target.password.value
     
     email.length > 0 && loginUser(email, password)
-
-    console.log('email:', email)
-    console.log('password:', password)
   }
 
 
